@@ -28,7 +28,7 @@ namespace Wisssen.Controllers
         }
         [HttpPost]
         public ActionResult Contact(string firstName,string lastName,string email,string phone, string department,string message)
-        {
+        {//
           
             //todo mail gönderme işlemi yapılcak 
             System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
