@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,10 +27,48 @@ namespace Wisssen.Controllers
 
             return View();
         }
+        public ActionResult DenemeForm() {
+
+            return View();
+        }
         [HttpPost]
         public ActionResult Contact(string firstName,string lastName,string email,string phone, string department,string message)
-        {//
-          
+        {// 
+            firstName = firstName.Trim();
+            lastName = lastName.Trim();
+            if (firstName == "") {
+
+                ViewBag.Message = "Ad Alanını Giriniz..";
+                ViewBag.IsError = true;
+                return View();
+
+            }
+            if (firstName.Length > 50) {
+
+                ViewBag.Message = "Ad Alanını 50 karakterden uzun olamaz";
+                ViewBag.IsError = true;
+                return View();
+
+            }
+            if (lastName=="")
+            {
+
+                ViewBag.Message = "Soyad Gereklidir";
+                ViewBag.IsError = true;
+                return View();
+
+            }
+            Regex regex = new Regex(@"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$");
+            Match match = regex.Match(phone);
+            if (match.Success == false) {
+
+                ViewBag.Message = "Telefon 5XX XXX XXXX formatında giriniz";
+                ViewBag.IsError = true;
+                return View();
+
+            }
+            
+
             //todo mail gönderme işlemi yapılcak 
             System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
 
