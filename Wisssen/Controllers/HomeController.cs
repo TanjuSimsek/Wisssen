@@ -32,6 +32,15 @@ namespace Wisssen.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult DenemeForm(Wisssen.Models.DenemeForm model)
+        {
+            if (ModelState.IsValid) {
+                ViewBag.Message = "Mail Başarıyla Gönderikldi";
+                return View();
+            }
+            return View();
+        }
+        [HttpPost]
         public ActionResult Contact(string firstName,string lastName,string email,string phone, string department,string message)
         {// 
             firstName = firstName.Trim();
