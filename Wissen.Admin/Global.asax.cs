@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Wisssen
+namespace Wissen.Admin
 {
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -39,11 +39,12 @@ namespace Wisssen
             builder.RegisterFilterProvider();
 
             // OPTIONAL: Enable action method parameter injection (RARE).
-     
+            
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
         }
     }
 }
