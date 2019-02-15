@@ -35,31 +35,55 @@ namespace Wisssen.Controllers
         public ActionResult DenemeForm(Wisssen.Models.DenemeForm model)
         {
             if (ModelState.IsValid) {
-                ViewBag.Message = "Mail Başarıyla Gönderikldi";
+
+               
+
+                bool hasError = false;
+                try {
+
+                    System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
+
+                    mailMessage.From = new System.Net.Mail.MailAddress("gonderen@gmail.com", "Gönderen Firma Adı");
+                    mailMessage.Subject = "İletişim Formu: " + model.FirstName;
+
+                    mailMessage.To.Add("alici@firmaadi.com,digeralici@gmail.com");
+
+                    string body;
+                    body = "Ad Soyad: " + model.FirstName + " " + model.LastName + "<br />";
+                    body += "Telefon: " + model.Phone + "<br />";
+                    body += "E-posta: " + model.Email + "<br />";
+
+
+                    mailMessage.IsBodyHtml = true;
+                    mailMessage.Body = body;
+
+                    System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+                    smtp.Credentials = new System.Net.NetworkCredential("gonderen@gmail.com", "gondereninmailsifresi");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mailMessage);
+                    // ViewBag.Message = "Mesajınız gönderildi. Teşekkür ederiz.";
+
+                    ViewBag.Message = "Mail Başarıyla Gönderikldi";
+
+
+
+                    //mail gönder
+                    // throw new Exception("Mail sunucusuna ulaşılmıyor!Lütfen daha sonra tekrar deneyin");
+
+                } catch (Exception ex) {
+
+                    ModelState.AddModelError("Error", ex.Message);
+                    hasError = true;
+                    
+                }
+                if (hasError == false) {
+                    ViewBag.Message = "Mail Sunucusuna Erişelemiyor";
+
+                }
+                
                 return View();
             }
 
-            System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
-
-            mailMessage.From = new System.Net.Mail.MailAddress("gonderen@gmail.com", "Gönderen Firma Adı");
-            mailMessage.Subject = "İletişim Formu: " + model.FirstName;
-
-            mailMessage.To.Add("alici@firmaadi.com,digeralici@gmail.com");
-
-            string body;
-            body = "Ad Soyad: " + model.FirstName + " " + model.LastName + "<br />";
-            body += "Telefon: " + model.Phone + "<br />";
-            body += "E-posta: " + model.Email+ "<br />";
-          
-            
-            mailMessage.IsBodyHtml = true;
-            mailMessage.Body = body;
-
-            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new System.Net.NetworkCredential("gonderen@gmail.com", "gondereninmailsifresi");
-            smtp.EnableSsl = true;
-            smtp.Send(mailMessage);
-            ViewBag.Message = "Mesajınız gönderildi. Teşekkür ederiz.";
 
 
             return View();
