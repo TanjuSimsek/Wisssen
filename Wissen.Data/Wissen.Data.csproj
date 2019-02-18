@@ -53,9 +53,9 @@
     <Compile Include="Builder\PostBuilder.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201902150835505_addWissenData.cs" />
-    <Compile Include="Migrations\201902150835505_addWissenData.Designer.cs">
-      <DependentUpon>201902150835505_addWissenData.cs</DependentUpon>
+    <Compile Include="Migrations\201902180720524_addWissenData.cs" />
+    <Compile Include="Migrations\201902180720524_addWissenData.Designer.cs">
+      <DependentUpon>201902180720524_addWissenData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902150835505_addWissenData.resx">
-      <DependentUpon>201902150835505_addWissenData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902180720524_addWissenData.resx">
+      <DependentUpon>201902180720524_addWissenData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

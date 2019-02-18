@@ -17,7 +17,7 @@ namespace Wissen.Data
         IEnumerable<T> GetAll(Expression<Func<T, bool>> where);
         IEnumerable<T> GetAll();
         T Find(Expression<Func<T, bool>> where);
-        T Find(int id);
+        T Find(int Id);
         void SaveChanges();
 
     }

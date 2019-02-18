@@ -12,6 +12,7 @@ namespace Wissen.Service
     public class CategoryService : ICategoryService
     {
         private readonly IRepository<Category> repository;
+        //bu repostory i dependency injection ile alabilmemiz için comtroctor tanımlıyorum
         public CategoryService(IRepository<Category> repository)
         {
 
@@ -27,6 +28,12 @@ namespace Wissen.Service
             {
                 repository.Delete(categoryToDelete);
             }
+        }
+
+        public void Delete(Category entity)
+        {
+            repository.Delete(entity);
+            repository.SaveChanges();
         }
 
         public Category Find(int id)
@@ -57,11 +64,13 @@ namespace Wissen.Service
         public void Insert(Category category)
         {
             repository.Insert(category);
+            repository.SaveChanges();
         }
 
         public void Update(Category category)
         {
             repository.Update(category);
+            repository.SaveChanges();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Wissen.Data.Migrations
                 "dbo.Categories",
                 c => new
                     {
-                        id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 200),
                         Description = c.String(nullable: false, maxLength: 200),
                         CreatedBy = c.String(),
@@ -19,13 +19,13 @@ namespace Wissen.Data.Migrations
                         UpdatedBy = c.String(),
                         UpdatedAt = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Posts",
                 c => new
                     {
-                        id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 200),
                         Description = c.String(nullable: false, maxLength: 200),
                         CategoryId = c.Int(nullable: false),
@@ -34,7 +34,7 @@ namespace Wissen.Data.Migrations
                         UpdatedBy = c.String(),
                         UpdatedAt = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.id)
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
                 .Index(t => t.CategoryId);
             

@@ -13,7 +13,7 @@ namespace Wissen.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201902150835505_addWissenData"; }
+            get { return "201902180720524_addWissenData"; }
         }
         
         string IMigrationMetadata.Source

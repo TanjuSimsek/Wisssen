@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Wissen.Data;
+using Wissen.Service;
 
 namespace Wissen.Admin
 {
@@ -39,7 +41,14 @@ namespace Wissen.Admin
             builder.RegisterFilterProvider();
 
             // OPTIONAL: Enable action method parameter injection (RARE).
-            
+            //db contexti scode (yani request bazlı) olarak register et
+            builder.RegisterType<ApplicationDbContext>().InstancePerRequest();
+            //bir mvc proje rewuest bazlı çalışıyor ınstance per requeste.
+            //generic repostoryi gecici insatnace olarak register et.Aoutofac repository generic
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
+            //servisleri register et
+            builder.RegisterType(typeof(PostService)).As(typeof(IPostService)).InstancePerDependency();
+            builder.RegisterType(typeof(CategoryService)).As(typeof(ICategoryService)).InstancePerDependency();
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
