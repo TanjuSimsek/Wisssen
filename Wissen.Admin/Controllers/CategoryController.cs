@@ -33,5 +33,60 @@ namespace Wissen.Admin.Controllers
             return View(category);
 
         }
+        [HttpPost]
+        public ActionResult Craate(Category category)
+        {
+            if (ModelState.IsValid) {
+                categoryService.Insert(category);
+                return RedirectToAction("Index");
+
+
+            }
+            return View();
+           
+
+        }
+        public ActionResult Edit(int id) {
+
+            var category = categoryService.Find(id);
+            if (category == null) {
+                return HttpNotFound();
+
+            }
+            return View(category);
+
+        }
+        [HttpPost]
+        public ActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = categoryService.Find(category.Id);
+                model.Name = category.Name;
+                model.Description = category.Description;
+                categoryService.Update(model);
+                return RedirectToAction("Index");
+
+
+            }
+            return View();
+
+
+        }
+       
+        public ActionResult Delete(int id)
+        {
+               
+               
+                
+                categoryService.Delete(id);
+                return RedirectToAction("Index");
+
+
+            
+           
+
+
+        }
     }
 }

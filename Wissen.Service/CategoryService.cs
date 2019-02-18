@@ -27,6 +27,7 @@ namespace Wissen.Service
             if (categoryToDelete != null)
             {
                 repository.Delete(categoryToDelete);
+                repository.SaveChanges();
             }
         }
 
