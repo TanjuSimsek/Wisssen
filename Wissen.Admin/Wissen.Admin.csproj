@@ -199,6 +199,7 @@
     <Content Include="Views\Post\Craate.cshtml" />
     <Content Include="Views\Post\Edit.cshtml" />
     <Content Include="Views\Post\Delete.cshtml" />
+    <Content Include="Views\Post\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

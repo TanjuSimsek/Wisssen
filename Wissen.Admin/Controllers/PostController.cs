@@ -34,6 +34,7 @@ namespace Wissen.Admin.Controllers
 
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Craate(Post post)
         {
             if (ModelState.IsValid)
@@ -96,6 +97,21 @@ namespace Wissen.Admin.Controllers
 
 
         }
+        public ActionResult Get(int  id)
+        {
+
+
+
+
+            return View(postService.Find(id));
+
+
+
+
+
+
+        }
+
 
 
     }
