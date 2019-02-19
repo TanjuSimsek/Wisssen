@@ -63,6 +63,7 @@ namespace Wissen.Admin.Controllers
 
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(Post post)
         {
             if (ModelState.IsValid)
